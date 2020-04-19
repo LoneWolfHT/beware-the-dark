@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<style media='screen' type='text/css'>
+		@font-face {
+			font-family: avara;
+			src: url('assets/avara/Avara.ttf');
+			font-weight:400;
+			font-weight:normal;
+		}
+	</style>
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<script src="https://cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser-arcade-physics.min.js"></script>
+</head>
+<body>
+	<div style="font-family:avara; position:absolute; left:-1000px; visibility:hidden;">.</div>
+	<script>
+		var config = {
+			type: Phaser.WEBGL,
+			title: "Beware the Dark",
+			version: 0.1,
+			scale: {
+				parent: 'body',
+				autoCenter: Phaser.Scale.CENTER_BOTH,
+				width: 900,
+				height: 600,
+			},
+			autoCenter: Phaser.Scale.CENTER_BOTH,
+			render: {pixelArt: true},
+			physics: {
+				default: "arcade",
+				arcade: {
+					gravity: {y: 200}
+				}
+			},
+			scene: {
+				preload: preload,
+				create: startmainscene,
+			},
+		};
+
+		var game = new Phaser.Game(config);
+
+		function preload()
+		{
+			console.log("Loading Scenes");
+
+			this.load.sceneFile("MainMenu", "scenes/MainMenu.js");
+			this.load.sceneFile("DarkForest", "scenes/DarkForest.js");
+		}
+
+		function startmainscene()
+		{
+			console.log("Starting Main scene");
+			this.scene.start("MainMenu");
+		}
+	</script>
+</body>
+</html>
