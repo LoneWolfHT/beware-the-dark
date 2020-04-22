@@ -182,27 +182,27 @@ class DarkForest extends Phaser.Scene
 				this.scene.start("MainMenu");
 			}, null, this)
 		}
-		
+
 		for (const obj of monsters)
 			if (Math.abs(player.x - obj.x) <= 256)
 			{
 				obj.setVisible(false);
-				
+
 				if (Math.sign(player.x - obj.x) >= 0)
-				obj.setFlipX(true);
+					obj.setFlipX(true);
 				else
-				obj.setFlipX(false);
-				
-					if (obj.getCenter().distance(player.getCenter()) <= 38)
-					{
-						player.setVelocityX(0);
-						player.anims.play("dead");
-						playerlight.setIntensity(0.1);
-						GAME_OVER = true;
-					}
+					obj.setFlipX(false);
+
+				if (obj.getCenter().distance(player.getCenter()) <= 38)
+				{
+					player.setVelocityX(0);
+					player.anims.play("dead");
+					playerlight.setIntensity(0.1);
+					GAME_OVER = true;
 				}
-				else
-					obj.setVisible(true);
+			}
+			else
+				obj.setVisible(true);
 
 		if (!GAME_OVER && WORLD_W - player.x <= 20)
 		{
